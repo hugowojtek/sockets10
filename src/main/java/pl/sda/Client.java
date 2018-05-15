@@ -12,7 +12,7 @@ public class Client {
 
             System.out.println();
 
-            String toSend = "Cześć uczę się JAVY";
+            String toSend = "Cześć uczę się JAVY bo musze";
 
             Socket socket = new Socket("localhost", 5555);
 
