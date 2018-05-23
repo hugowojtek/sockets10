@@ -32,9 +32,9 @@ class Connection extends Thread {
 
     @Override
     public void run() {
-        final InputStream inputStream;
+
         try {
-            inputStream = socket.getInputStream();
+            final InputStream inputStream = socket.getInputStream();
             final OutputStream outputStream = socket.getOutputStream();
             final DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
             final BufferedReader bufferedReader =
@@ -42,7 +42,14 @@ class Connection extends Thread {
 
             String s = null;
             int state = 1;
+
+            int state_2 = 1;
+
             while ((s = bufferedReader.readLine()) != null) {
+
+                if ((state_2==1)&&s.equalsIgnoreCase("state2toServer_2")){
+                    System.out.println(new String(s.getBytes("UTF-8"))+state_2);
+                };
 
                 if (state == 1 && s.equalsIgnoreCase("state1toServer")) {
                     System.out.println(new String(s.getBytes("UTF-8"))+state);
@@ -82,6 +89,8 @@ class Connection extends Thread {
 
         bufferedReader.close();
         dataOutputStream.close();
+        outputStream.close();
+        inputStream.close();
     } catch (IOException e) {
         e.printStackTrace();
     }

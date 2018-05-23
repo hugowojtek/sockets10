@@ -22,9 +22,9 @@ public class Client {
             final BufferedReader readFromSocket = new BufferedReader(
                     new InputStreamReader(inputStream)
             );
+
             final DataOutputStream writeToSocket =
                     new DataOutputStream(outputStream);
-
 
             writeToSocket.writeBytes("state1toServer\r");
 
@@ -55,6 +55,11 @@ public class Client {
                     break;
                 }
             }
+
+            writeToSocket.close();
+            readFromSocket.close();
+            outputStream.close();
+            inputStream.close();
 
         } catch (IOException e) {
             e.printStackTrace();
